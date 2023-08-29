@@ -2,14 +2,13 @@
 
 A Projects tracker app built with [Skeleton UI](https://www.skeleton.dev/), a UI Toolkit for **Svelte + Tailwind**.
 
-This project was scaffoled using the *Skeleton CLI*:
+This project was scaffoled using the _Skeleton CLI_:
 
 ```bash
 npm create skeleton-app@latest my-skeleton-app
 	# - Enable SvelteKit's Typescript syntax (recommended)
 cd my-skeleton-app
 ```
-
 
 # create-svelte
 
