@@ -21,11 +21,29 @@
 	{:else}
 		<div class="grid gap-4">
 			{#each projects as project (project.id)}
-				<article class="card p-4">
-					<div>
-						<span>#{project.code} - </span>{project.name}
+				<article class="card card-hover p-4">
+					<div class="flex justify-between">
+						<div class="mr-2">
+							<header class="card-header p-0">
+								<div>
+									<span>#{project.code}:</span>
+									<span>{project.name}</span>
+									<span> · {project.startDate}</span>
+								</div>
+							</header>
+							<section class="blockquote whitespace-pre mt-2">{project.description}</section>
+						</div>
+						<div>
+							<form method="POST" action="?/deleteProject&id={project.id}">
+								<div class="grid grid-rows-1 gap-2">
+									<a class="chip variant-filled-secondary" href={`${$page.url.pathname}/${project.id}`}
+										><span>Consultar</span></a
+									>
+									<button type="submit" class="chip variant-filled-error">Borrar</button>
+								</div>
+							</form>
+						</div>
 					</div>
-					<div><span>Fecha Origen: </span>{project.startDate}</div>
 				</article>
 			{/each}
 		</div>
