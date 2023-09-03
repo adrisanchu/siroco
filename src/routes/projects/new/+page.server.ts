@@ -1,47 +1,57 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from '@sveltejs/kit';
+import { prisma } from '$lib/server/prisma';
 
 export const actions: Actions = {
-	createProject: async (event) => {
-		console.log('createProject runs');
-		const data = await event.request.formData();
+	createProject: async ({ request }) => {
+		console.log('===createProject:');
+		// extract fields from form
+		const data = await request.formData();
+		const name: string | undefined = data.get('name')?.toString();
+		const code: number | undefined = Number(data.get('code')?.toString());
+		const alias: string | undefined | null = data.get('alias')?.toString() || null;
+		const startDate: string | undefined = data.get('startDate')?.toString();
+		const description: string | undefined | null = data.get('description')?.toString() || null;
 
-		// extract valuable fields
-		const name = data.get('name');
-		const alias = data.get('alias');
-		const startDate = data.get('startDate');
-		const description = data.get('description');
-
-		if (!name) {
-			return fail(400, { name, missing: true });
+		// check for mandatory props
+		if (!name || !code || !startDate) {
+			return fail(400, {
+				name,
+				code,
+				alias,
+				startDate,
+				description,
+				missing: true
+			});
 		}
 
-		/*
-		console.log('data!', {
-			name,
-			alias,
-			startDate,
-			description
-		});
-		*/
+		// save in the DB
 		try {
-			// TODO: Prisma!
-			/*
 			await prisma.project.create({
 				data: {
 					name,
+					code,
 					alias,
 					startDate,
 					description
 				}
 			});
-			*/
 			console.log('data added to DB');
-		} catch (e) {
-			console.error(e);
-			// return message(form, "Something went wrong");
+		} catch (err) {
+			console.error(err);
+			return fail(500, {
+				name,
+				code,
+				alias,
+				startDate,
+				description,
+				message: 'Something went wrong'
+			});
 		}
 
-		return { name, success: true };
+		// success!
+		console.log('===createProject:ok');
+		throw redirect(303, '/projects');
+		// return { success: true };
 	}
 };
