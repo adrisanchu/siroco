@@ -7,3 +7,5 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+// eslint-disable-next-line no-var
+var __prisma: import('@prisma/client').PrismaClient;

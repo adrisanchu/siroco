@@ -14,7 +14,7 @@ model Project {
   id          Int     @id @default(autoincrement())
   name        String
   code        Int
-  alias       String
+  alias       String?
   startDate   String // YYYY-MM-DD
   description String?
 }

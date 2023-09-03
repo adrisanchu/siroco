@@ -30,6 +30,11 @@
 		</label>
 
 		<label class="label">
+			<span>Código</span>
+			<input class="input" name="code" type="number" />
+		</label>
+
+		<label class="label">
 			<span>Fecha de origen</span>
 			<input class="input" name="startDate" title="Input (date)" type="date" value={todaysDate} />
 		</label>
