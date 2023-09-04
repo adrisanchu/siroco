@@ -19,31 +19,34 @@
 	{#if projects.length === 0}
 		<p>Aún no hay proyectos...</p>
 	{:else}
-		<div class="grid gap-4">
+		<div class="grid gap-6">
 			{#each projects as project (project.id)}
-				<article class="card card-hover p-4">
-					<div class="flex justify-between">
-						<div class="mr-2">
-							<header class="card-header p-0">
-								<div>
-									<span>#{project.code}:</span>
-									<span>{project.name}</span>
-									<span> · {project.startDate}</span>
-								</div>
-							</header>
-							<section class="blockquote whitespace-pre mt-2">{project.description}</section>
-						</div>
+				<article class="card p-4 relative">
+					<header class="card-header p-0">
 						<div>
-							<form method="POST" action="?/deleteProject&id={project.id}">
-								<div class="grid grid-rows-1 gap-2">
-									<a class="chip variant-filled-secondary" href={`${$page.url.pathname}/${project.id}`}
-										><span>Consultar</span></a
-									>
-									<button type="submit" class="chip variant-filled-error">Borrar</button>
-								</div>
-							</form>
+							<span>#{project.code}:</span>
+							<span>{project.name}</span>
+							<span> · {project.startDate}</span>
 						</div>
-					</div>
+					</header>
+					{#if project.description}
+						<section class="blockquote whitespace-pre mt-2">{project.description}</section>
+					{/if}
+					<form method="POST" action="?/deleteProject&id={project.id}">
+						<div class="grid grid-flow-col gap-0 absolute -top-4 right-4 btn-group variant-filled-secondary">
+							<a
+								title="Consultar"
+								class="btn-icon btn-icon-sm bg-initial border-0"
+								href={`${$page.url.pathname}/${project.id}`}><span>🔎</span></a
+							>
+							<a
+								title="Editar"
+								class="btn-icon btn-icon-sm bg-initial border-0"
+								href={`${$page.url.pathname}/${project.id}`}><span>✏</span></a
+							>
+							<button title="Eliminar" type="submit" class="btn-icon btn-icon-sm border-0">🗑</button>
+						</div>
+					</form>
 				</article>
 			{/each}
 		</div>
