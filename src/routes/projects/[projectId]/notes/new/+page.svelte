@@ -6,7 +6,6 @@
 
 	$: ({ project } = data);
 
-	let content: string;
 	let priority: string = 'Baja';
 	const priorities = [
 		{
@@ -71,7 +70,6 @@
 		<label class="label">
 			<span>Descripción</span>
 			<textarea
-				bind:value={content}
 				name="description"
 				class="textarea"
 				rows="5"

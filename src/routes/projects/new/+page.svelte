@@ -4,7 +4,6 @@
 	// export let data: PageData;
 	export let form: ActionData;
 
-	let content: string;
 	// input variables for the form
 	let inputName = `Super Proyecto #${Math.round(Math.random() * 1000)}`;
 	let todaysDate = new Date().toLocaleDateString('en-CA'); // date in YYYY-MM-DD format (Canadians got it right!)
@@ -42,7 +41,6 @@
 		<label class="label">
 			<span>Descripción</span>
 			<textarea
-				bind:value={content}
 				name="description"
 				class="textarea"
 				rows="4"
