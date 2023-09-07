@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
+	$: parentPath = $page.url.pathname.substring(0, $page.url.pathname.lastIndexOf('/'));
 	$: ({ project } = data);
 </script>
 
@@ -10,9 +12,16 @@
 </svelte:head>
 
 <div class="container h-full mx-auto gap-8 flex flex-col">
+	<div class="flex items-center justify-between">
+		<ol class="breadcrumb">
+			<li class="crumb"><a class="anchor" href="/projects">Proyectos</a></li>
+			<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+			<li class="crumb"><a class="anchor" href={parentPath}>{project.name}</a></li>
+			<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+			<li>Editar</li>
+		</ol>
+	</div>
 	<form method="POST" action="?/updateProject" class="card p-4 flex flex-col gap-3">
-		<h2>Editando Proyecto: {project.name}</h2>
-
 		<label class="label">
 			<span>Título</span>
 			<input class="input" name="name" type="text" value={project.name} />

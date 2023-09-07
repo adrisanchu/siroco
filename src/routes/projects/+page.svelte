@@ -30,7 +30,7 @@
 						</div>
 					</header>
 					{#if project.description}
-						<section class="blockquote whitespace-pre mt-2">{project.description}</section>
+						<section class="blockquote whitespace-pre-wrap mt-2">{project.description}</section>
 					{/if}
 					<form method="POST" action="?/deleteProject&id={project.id}">
 						<div class="grid grid-flow-col gap-0 absolute -top-4 right-4 btn-group variant-filled-secondary">

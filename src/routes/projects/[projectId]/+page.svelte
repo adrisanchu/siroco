@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
@@ -10,6 +11,14 @@
 </svelte:head>
 
 <div class="container h-full mx-auto gap-8 flex flex-col">
+	<div class="flex items-center justify-between">
+		<ol class="breadcrumb">
+			<li class="crumb"><a class="anchor" href="/projects">Proyectos</a></li>
+			<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+			<li>{project.name}</li>
+		</ol>
+		<a href={`${$page.url.pathname}/edit`} class="btn variant-ghost-secondary">Editar Proyecto</a>
+	</div>
 	<div class="card p-4 grid grid-cols-5 gap-2">
 		<div class="text-right">
 			<h4>Título</h4>
