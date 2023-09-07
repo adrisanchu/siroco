@@ -30,6 +30,6 @@ export const actions: Actions = {
 			console.error(err);
 			return fail(500, { message: 'Something went wrong' });
 		}
-		return { status: 200 }
+		return { status: 200 };
 	}
 };
