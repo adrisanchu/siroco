@@ -3,7 +3,7 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	$: parentPath = $page.url.pathname.substring(0, $page.url.pathname.lastIndexOf('/'));
+
 	$: ({ project } = data);
 
 	let content: string;
@@ -44,10 +44,11 @@
 		<div class="flex justify-between">
 			<label class="label">
 				<span>Título</span>
-				<input class="input" type="text" placeholder="Título de la nota..." />
+				<input class="input" name="name" type="text" placeholder="Título de la nota..." />
 			</label>
 			<div>
 				<span>Prioridad</span>
+				<input class="hidden" name="priority" bind:value={priority} />
 				<div class="flex gap-1.5 mt-1">
 					{#each priorities as { value, className }}
 						<label for={value}>
@@ -69,7 +70,13 @@
 
 		<label class="label">
 			<span>Descripción</span>
-			<textarea bind:value={content} class="textarea" rows="5" placeholder="Introduce una descripción..." />
+			<textarea
+				bind:value={content}
+				name="description"
+				class="textarea"
+				rows="5"
+				placeholder="Introduce una descripción..."
+			/>
 		</label>
 		<button type="submit" class="btn variant-ghost-primary self-end">Crear Nota</button>
 	</form>

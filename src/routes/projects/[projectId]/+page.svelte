@@ -76,6 +76,27 @@
 		<h3 class="h3">Notas</h3>
 		<a href={`${$page.url.pathname}/notes/new`} class="btn variant-ghost-primary">Nueva Nota</a>
 	</div>
+	{#if project.notes.length === 0}
+		<p>Aún no hay notas...</p>
+	{:else}
+		{#each project.notes as note (note.id)}
+			<div class="card p-4">
+				<header class="card-header p-0">
+					<div>
+						<span>#{note.id}:</span>
+						<span>{note.name}</span>
+					</div>
+				</header>
+				<div>
+					<span>Prioridad: {note.priority}</span>
+				</div>
+				{#if note.description}
+					<section class="blockquote whitespace-pre-wrap mt-2">{note.description}</section>
+				{/if}
+			</div>
+		{/each}
+	{/if}
+	<div class="card" />
 </div>
 
 <style>

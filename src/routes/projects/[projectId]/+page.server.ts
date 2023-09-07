@@ -8,6 +8,10 @@ export const load: PageServerLoad = async ({ params }) => {
 		const project = await prisma.project.findUnique({
 			where: {
 				id: Number(params.projectId)
+			},
+			// expose the notes!
+			include: {
+				notes: true
 			}
 		});
 		if (!project) {
