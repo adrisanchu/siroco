@@ -42,7 +42,7 @@
 							<a
 								title="Editar"
 								class="btn-icon btn-icon-sm bg-initial border-0"
-								href={`${$page.url.pathname}/${project.id}`}><span>✏</span></a
+								href={`${$page.url.pathname}/${project.id}/edit`}><span>✏</span></a
 							>
 							<button title="Eliminar" type="submit" class="btn-icon btn-icon-sm border-0">🗑</button>
 						</div>

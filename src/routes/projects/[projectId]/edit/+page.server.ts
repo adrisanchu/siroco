@@ -5,9 +5,10 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const getProject = async () => {
+		console.log('=> getProject:');
 		const project = await prisma.project.findUnique({
 			where: {
-				id: Number(params.articleId)
+				id: Number(params.projectId)
 			}
 		});
 		if (!project) {
@@ -15,6 +16,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 		return project;
 	};
+	console.log('=> getProject:ok');
 	return {
 		project: getProject()
 	};
@@ -22,7 +24,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 export const actions: Actions = {
 	updateProject: async ({ request, params }) => {
-		console.log('===updateProject:');
+		console.log('=> updateProject:');
 		const data = await request.formData();
 		const name: string | undefined = data.get('name')?.toString();
 		const code: number | undefined = Number(data.get('code')?.toString());
@@ -33,7 +35,7 @@ export const actions: Actions = {
 		try {
 			await prisma.project.update({
 				where: {
-					id: Number(params.articleId)
+					id: Number(params.projectId)
 				},
 				data: {
 					name,
@@ -48,7 +50,7 @@ export const actions: Actions = {
 			return fail(500, { message: 'Something went wrong' });
 		}
 		// success!
-		console.log('===updateProject:ok');
+		console.log('=> updateProject:ok');
 		throw redirect(303, '/projects');
 		// return { status: 200 };
 	}
