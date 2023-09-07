@@ -4,7 +4,7 @@ import { prisma } from '$lib/server/prisma';
 
 export const actions: Actions = {
 	createProject: async ({ request }) => {
-		console.log('===createProject:');
+		console.log('=> createProject:');
 		// extract fields from form
 		const data = await request.formData();
 		const name: string | undefined = data.get('name')?.toString();
@@ -50,7 +50,7 @@ export const actions: Actions = {
 		}
 
 		// success!
-		console.log('===createProject:ok');
+		console.log('=> createProject:ok');
 		throw redirect(303, '/projects');
 		// return { success: true };
 	}
