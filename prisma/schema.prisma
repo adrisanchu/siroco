@@ -17,4 +17,14 @@ model Project {
   alias       String?
   startDate   String // YYYY-MM-DD
   description String?
+  notes       Note[]
+}
+
+model Note {
+  id          Int     @id @default(autoincrement())
+  name        String
+  priority    String // Alta / Media / Baja
+  description String?
+  project     Project @relation(fields: [projectId], references: [id])
+  projectId   Int
 }
