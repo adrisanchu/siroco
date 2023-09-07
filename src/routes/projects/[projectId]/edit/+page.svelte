@@ -12,15 +12,13 @@
 </svelte:head>
 
 <div class="container h-full mx-auto gap-8 flex flex-col">
-	<div class="flex items-center justify-between">
-		<ol class="breadcrumb">
-			<li class="crumb"><a class="anchor" href="/projects">Proyectos</a></li>
-			<li class="crumb-separator" aria-hidden>&rsaquo;</li>
-			<li class="crumb"><a class="anchor" href={parentPath}>{project.name}</a></li>
-			<li class="crumb-separator" aria-hidden>&rsaquo;</li>
-			<li>Editar</li>
-		</ol>
-	</div>
+	<ol class="breadcrumb-nonresponsive">
+		<li class="crumb"><a class="anchor" href="/projects">Proyectos</a></li>
+		<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+		<li class="crumb"><a class="anchor" href={parentPath}>{project.name}</a></li>
+		<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+		<li>Editar</li>
+	</ol>
 	<form method="POST" action="?/updateProject" class="card p-4 flex flex-col gap-3">
 		<label class="label">
 			<span>Título</span>
