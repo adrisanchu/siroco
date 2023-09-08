@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		console.log('=> getProject:');
 		const project = await prisma.project.findUnique({
 			where: {
-				id: Number(params.projectId)
+				id: params.projectId
 			}
 		});
 		if (!project) {
@@ -35,7 +35,7 @@ export const actions: Actions = {
 		try {
 			await prisma.project.update({
 				where: {
-					id: Number(params.projectId)
+					id: params.projectId
 				},
 				data: {
 					name,

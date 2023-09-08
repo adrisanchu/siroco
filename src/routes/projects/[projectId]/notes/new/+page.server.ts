@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		console.log('=> getProject:');
 		const project = await prisma.project.findUnique({
 			where: {
-				id: Number(params.projectId)
+				id: params.projectId
 			}
 		});
 		if (!project) {
@@ -63,7 +63,7 @@ export const actions: Actions = {
 					// startDate,
 					description,
 					// relationship with a project
-					projectId: Number(projectId)
+					projectId: projectId
 				}
 			});
 			console.log('note added to DB');
